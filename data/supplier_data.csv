@@ -1,0 +1,6 @@
+SupplierID,SupplierName,Status
+SUP001,Tata Steel,Available
+SUP002,Ashok Leyland,Delayed
+SUP003,Larsen & Toubro,Available
+SUP004,JSW Steel,Unavailable
+SUP005,TVS Supply Chain,Available
