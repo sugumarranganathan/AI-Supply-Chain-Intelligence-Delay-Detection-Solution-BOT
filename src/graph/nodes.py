@@ -142,10 +142,10 @@ def shipment_node(state: SupplyChainState):
     )
 
     if shipment["status"] == "Shipment Not Found":
-    state["final_response"] = (
-        f"Shipment '{shipment_id}' was not found."
-    )
-    return state
+        state["final_response"] = (
+            f"Shipment '{shipment_id}' was not found."
+        )
+        return state
 
     state["shipment_status"] = shipment["status"]
     state["supplier_id"] = shipment["supplier_id"]
