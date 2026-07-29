@@ -1,0 +1,6 @@
+WarehouseID,Location,Capacity,Status
+WH001,Chennai,90%,Operational
+WH002,Bangalore,75%,Operational
+WH003,Hyderabad,100%,Congested
+WH004,Mumbai,65%,Operational
+WH005,Delhi,95%,Busy
