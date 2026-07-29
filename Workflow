@@ -1,0 +1,116 @@
+                           AI SUPPLY CHAIN INTELLIGENCE
+                      Delay Detection & Solution BOT (SCI-BOT)
+
+┌──────────────────────────────────────────────────────────────────────┐
+│                        CUSTOMER INTERACTION                          │
+└──────────────────────────────────────────────────────────────────────┘
+                │
+                ▼
+      Customer opens SCI-BOT
+                │
+                ▼
+    Enter Shipment ID OR Customer Details
+        • Mobile Number
+        • Email Address
+        • Order ID
+        • Customer Name
+                │
+                ▼
+        Ask Shipment Question
+                │
+                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                     LANGGRAPH WORKFLOW ENGINE                        │
+└──────────────────────────────────────────────────────────────────────┘
+                │
+                ▼
+          Input Node
+                │
+                ▼
+     Customer Lookup Node
+                │
+                ▼
+      RAG Retriever Node
+                │
+                ▼
+      Shipment Tool Node
+                │
+                ▼
+      Supplier Tool Node
+                │
+                ▼
+      Weather Tool Node
+                │
+                ▼
+       Risk Analysis Node
+                │
+                ▼
+          LLM Node
+                │
+                ▼
+        Output Node
+                │
+                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                      LANGCHAIN ECOSYSTEM                             │
+├──────────────────────────────────────────────────────────────────────┤
+│ • Prompt Templates                                                   │
+│ • Tool Calling                                                       │
+│ • Output Parser                                                      │
+│ • Conversation Memory                                                │
+│ • State Management                                                   │
+│ • LLM Integration                                                    │
+└──────────────────────────────────────────────────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                          RAG PIPELINE                                │
+├──────────────────────────────────────────────────────────────────────┤
+│ Documents                                                            │
+│      │                                                               │
+│      ▼                                                               │
+│ Text Splitter                                                        │
+│      │                                                               │
+│      ▼                                                               │
+│ Sentence Transformers Embeddings                                     │
+│      │                                                               │
+│      ▼                                                               │
+│ FAISS Vector Database                                                │
+│      │                                                               │
+│      ▼                                                               │
+│ Relevant Knowledge Retrieval                                         │
+└──────────────────────────────────────────────────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                      EXTERNAL TOOLS                                  │
+├──────────────────────────────────────────────────────────────────────┤
+│ ✓ Customer Lookup Tool                                               │
+│ ✓ Shipment Tool                                                      │
+│ ✓ Supplier Tool                                                      │
+│ ✓ Weather Tool                                                       │
+│ ✓ Risk Assessment Tool                                               │
+└──────────────────────────────────────────────────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                         GROQ LLM                                     │
+├──────────────────────────────────────────────────────────────────────┤
+│ AI analyses retrieved knowledge + live tool results                  │
+│ and generates the final business report.                             │
+└──────────────────────────────────────────────────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                     FINAL AI RESPONSE                                │
+├──────────────────────────────────────────────────────────────────────┤
+│ • Customer Information                                               │
+│ • Shipment Information                                               │
+│ • Executive Summary                                                  │
+│ • Shipment Status                                                    │
+│ • Weather Impact                                                     │
+│ • Supplier Analysis                                                  │
+│ • Risk Assessment                                                    │
+│ • Recommended Actions                                                │
+│ • Estimated Business Impact                                          │
+└──────────────────────────────────────────────────────────────────────┘
