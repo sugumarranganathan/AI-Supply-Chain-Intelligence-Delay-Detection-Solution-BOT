@@ -196,23 +196,27 @@ def weather_node(state: SupplyChainState):
 
 def supplier_node(state: SupplyChainState):
     """
-    Fetch supplier status.
+    Fetch supplier status dynamically from Shipment Details.
     """
 
     print("=" * 60)
     print("Supplier Node")
     print("=" * 60)
 
+    supplier_id = state.get("supplier_id", "")
+
     supplier = get_supplier_status.invoke(
         {
-            "supplier_id": "SUP001"
+            "supplier_id": supplier_id
         }
     )
 
     state["supplier_status"] = supplier
 
-    return state
+    print(f"Supplier ID     : {supplier_id}")
+    print(f"Supplier Status : {supplier}")
 
+    return state
 
 # ==================================================
 # Risk Node
