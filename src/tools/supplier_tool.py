@@ -2,22 +2,30 @@
 Supplier Tool
 """
 
+import pandas as pd
 from langchain_core.tools import tool
+
+# Load supplier data
+df = pd.read_csv("data/supplier_data.csv")
+
+# Clean column names
+df.columns = df.columns.str.strip()
+
+# Clean values
+df["SupplierID"] = df["SupplierID"].astype(str).str.strip().str.upper()
 
 
 @tool
-def get_supplier_status(supplier_name: str) -> str:
+def get_supplier_status(supplier_id: str) -> str:
     """
-    Returns supplier status.
+    Returns supplier status using Supplier ID.
     """
 
-    suppliers = {
-        "ABC Logistics": "Active",
-        "XYZ Transport": "Delayed Deliveries",
-        "Global Freight": "Operational",
-    }
+    supplier_id = supplier_id.strip().upper()
 
-    return suppliers.get(
-        supplier_name,
-        "Supplier not found."
-    )
+    supplier = df[df["SupplierID"] == supplier_id]
+
+    if supplier.empty:
+        return "Supplier not found."
+
+    return supplier.iloc[0]["Status"]
