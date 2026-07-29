@@ -77,8 +77,16 @@ def customer_lookup_node(state: SupplyChainState):
     )
 
     if shipment_id == "NOT_FOUND":
-        print("Customer not found.")
-        state["shipment_id"] = ""
+    print("Customer not found.")
+
+    state["shipment_id"] = ""
+    state["final_response"] = (
+        "Customer details not found. "
+        "Please verify the phone number, email, order ID or customer name."
+    )
+
+    return state
+    
     else:
         print(f"Shipment Found: {shipment_id}")
         state["shipment_id"] = shipment_id
@@ -111,9 +119,6 @@ def retriever_node(state: SupplyChainState):
     return state
 
 
-# ==================================================
-# Shipment Node
-# ==================================================
 
 # ==================================================
 # Shipment Node
@@ -136,6 +141,12 @@ def shipment_node(state: SupplyChainState):
         }
     )
 
+    if shipment["status"] == "Shipment Not Found":
+    state["final_response"] = (
+        f"Shipment '{shipment_id}' was not found."
+    )
+    return state
+
     state["shipment_status"] = shipment["status"]
     state["supplier_id"] = shipment["supplier_id"]
     state["warehouse_id"] = shipment["warehouse_id"]
@@ -149,22 +160,11 @@ def shipment_node(state: SupplyChainState):
 
     return state
     
+
+
 # ==================================================
-# Conditional Router
+# Weather Node
 # ==================================================
-
-def route_after_shipment(state: SupplyChainState):
-    """
-    Decide next workflow path.
-    """
-
-    status = state.get("shipment_status", "").lower()
-
-    if status == "delayed":
-        return ["weather", "supplier"]
-
-    return "risk"
-
 
 # ==================================================
 # Weather Node
@@ -172,23 +172,27 @@ def route_after_shipment(state: SupplyChainState):
 
 def weather_node(state: SupplyChainState):
     """
-    Fetch weather information.
+    Fetch weather information dynamically.
     """
 
     print("=" * 60)
     print("Weather Node")
     print("=" * 60)
 
+    city = state.get("destination_city", "")
+
     weather = get_weather.invoke(
         {
-            "city": "Chennai"
+            "city": city
         }
     )
 
     state["weather"] = weather
 
-    return state
+    print(f"Destination City : {city}")
+    print(f"Weather          : {weather}")
 
+    return state
 
 # ==================================================
 # Supplier Node
@@ -214,7 +218,11 @@ def supplier_node(state: SupplyChainState):
     state["supplier_status"] = supplier
 
     print(f"Supplier ID     : {supplier_id}")
-    print(f"Supplier Status : {supplier}")
+    if supplier == "Supplier not found.":
+        print("Supplier not found.")
+    else:
+        print(f"Supplier ID     : {supplier_id}")
+        print(f"Supplier Status : {supplier}")
 
     return state
 
