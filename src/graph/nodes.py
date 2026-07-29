@@ -6,7 +6,10 @@ from langchain_core.output_parsers import StrOutputParser
 
 from src.graph.state import SupplyChainState
 
-from src.tools.shipment_tool import get_shipment_status
+from src.tools.shipment_tool import (
+    get_shipment_details,
+    get_shipment_status,
+)
 from src.tools.customer_lookup_tool import find_shipment
 from src.tools.weather_tool import get_weather
 from src.tools.supplier_tool import get_supplier_status
@@ -112,9 +115,13 @@ def retriever_node(state: SupplyChainState):
 # Shipment Node
 # ==================================================
 
+# ==================================================
+# Shipment Node
+# ==================================================
+
 def shipment_node(state: SupplyChainState):
     """
-    Fetch shipment status.
+    Fetch complete shipment information.
     """
 
     print("=" * 60)
@@ -123,17 +130,25 @@ def shipment_node(state: SupplyChainState):
 
     shipment_id = state.get("shipment_id", "")
 
-    status = get_shipment_status.invoke(
+    shipment = get_shipment_details.invoke(
         {
             "shipment_id": shipment_id
         }
     )
 
-    state["shipment_status"] = status
+    state["shipment_status"] = shipment["status"]
+    state["supplier_id"] = shipment["supplier_id"]
+    state["warehouse_id"] = shipment["warehouse_id"]
+    state["destination_city"] = shipment["destination_city"]
+
+    print(f"Shipment ID      : {shipment_id}")
+    print(f"Status           : {shipment['status']}")
+    print(f"Supplier ID      : {shipment['supplier_id']}")
+    print(f"Warehouse ID     : {shipment['warehouse_id']}")
+    print(f"Destination City : {shipment['destination_city']}")
 
     return state
-
-
+    
 # ==================================================
 # Conditional Router
 # ==================================================
