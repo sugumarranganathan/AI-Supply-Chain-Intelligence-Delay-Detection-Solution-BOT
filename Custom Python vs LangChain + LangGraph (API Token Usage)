@@ -31,3 +31,10 @@ Overall comparison
 
 ===========
 
+AI Supply Chain Intelligence – Delay Detection & Solution BOT:
+
+API token usage is essentially the same whether you use custom Python or LangChain + LangGraph, provided they send the same prompts and retrieved context to the LLM.
+The main advantages of LangChain + LangGraph are faster development, cleaner architecture, easier maintenance, reusable components,
+and better support for complex workflows—not lower API token consumption.
+
+============
