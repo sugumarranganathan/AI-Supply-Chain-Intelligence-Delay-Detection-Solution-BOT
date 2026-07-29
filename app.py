@@ -31,29 +31,84 @@ def main():
 
         print("-" * 60)
 
-        shipment_id = input("Enter Shipment ID (or 'exit'): ").strip()
+        print("Do you know your Shipment ID?")
+        print("1. Yes")
+        print("2. No")
 
-        if shipment_id.lower() == "exit":
+        choice = input("Choose (1/2) or 'exit': ").strip()
+
+        if choice.lower() == "exit":
             print("\nThank you for using AI Supply Chain Intelligence.")
             break
 
-        user_query = input("Ask your question: ").strip()
+        shipment_id = ""
+        customer_input = ""
+
+        if choice == "1":
+
+            shipment_id = input("Enter Shipment ID: ").strip()
+
+            if shipment_id.lower() == "exit":
+                print("\nThank you for using AI Supply Chain Intelligence.")
+                break
+
+        elif choice == "2":
+
+            print("\nSearch using one of the following:")
+            print("• Mobile Number")
+            print("• Email")
+            print("• Order ID")
+            print("• Customer Name")
+
+            customer_input = input("Enter value: ").strip()
+
+            if customer_input.lower() == "exit":
+                print("\nThank you for using AI Supply Chain Intelligence.")
+                break
+
+        else:
+            print("\nInvalid choice. Please select 1 or 2.\n")
+            continue
+
+        user_query = input("\nAsk your question: ").strip()
 
         # --------------------------------------------------
         # Initial State
         # --------------------------------------------------
 
         state = {
+            # User Input
             "user_query": user_query,
+
+            # Customer Information
+            "customer_input": customer_input,
+            "customer_name": "",
+            "phone": "",
+            "email": "",
+            "order_id": "",
+
+            # Shipment Information
             "shipment_id": shipment_id,
             "shipment_status": "",
+
+            # Tool Results
             "weather": "",
             "supplier_status": "",
             "warehouse_status": "",
+
+            # Risk Analysis
             "risk_level": "",
+
+            # RAG
             "retrieved_documents": [],
+
+            # Memory
             "messages": [],
+
+            # Tool Logs
             "tool_results": [],
+
+            # Final Response
             "final_response": "",
         }
 
