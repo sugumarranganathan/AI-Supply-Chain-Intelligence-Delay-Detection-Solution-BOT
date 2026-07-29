@@ -1,0 +1,21 @@
+SUPPLIER GUIDELINES
+
+Supplier ID:
+SUP001
+SUP002
+SUP003
+
+Supplier Status:
+- Active
+- Inactive
+- Low Inventory
+- Out of Stock
+
+Rules:
+Suppliers should update inventory every morning.
+
+Emergency Suppliers:
+Backup suppliers must be contacted if inventory falls below 20%.
+
+Supplier Performance:
+Maintain at least 95% on-time delivery.

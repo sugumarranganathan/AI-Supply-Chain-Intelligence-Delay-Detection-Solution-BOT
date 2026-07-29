@@ -1,0 +1,25 @@
+SHIPMENT POLICY
+
+Shipment ID Format:
+- SHP1001
+- SHP1002
+- SHP1003
+
+Shipment Status:
+- Pending
+- Processing
+- In Transit
+- Delayed
+- Delivered
+
+Delay Rules:
+- Heavy rain may delay shipments by 24 hours.
+- Floods may delay shipments by 48 hours.
+- Mechanical failures may delay shipments by 12 hours.
+- Customs clearance may delay international shipments.
+
+Priority Shipments:
+High-priority shipments should be processed first.
+
+Customer Notification:
+Customers should receive updates whenever shipment status changes.

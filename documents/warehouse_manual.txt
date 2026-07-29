@@ -1,0 +1,21 @@
+WAREHOUSE MANUAL
+
+Warehouse Operations:
+
+Working Hours:
+08:00 AM to 08:00 PM
+
+Closed:
+Sunday
+
+Storage Rules:
+Temperature-sensitive goods should be stored in cold storage.
+
+Packing:
+Fragile items require double packaging.
+
+Inventory:
+Inventory should be verified every evening.
+
+Emergency:
+Fire safety inspection every month.

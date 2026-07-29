@@ -1,0 +1,311 @@
+"""
+Business Logic Nodes for LangGraph
+"""
+
+from langchain_core.output_parsers import StrOutputParser
+
+from src.graph.state import SupplyChainState
+
+from src.tools.shipment_tool import get_shipment_status
+from src.tools.weather_tool import get_weather
+from src.tools.supplier_tool import get_supplier_status
+from src.tools.risk_tool import calculate_delay_risk
+
+from src.models.llm import LLMFactory
+from src.rag.retriever import DocumentRetriever
+
+
+# ==================================================
+# Initialize Components
+# ==================================================
+
+llm = LLMFactory.create()
+
+retriever = DocumentRetriever()
+
+parser = StrOutputParser()
+
+
+# ==================================================
+# Input Node
+# ==================================================
+
+def input_node(state: SupplyChainState):
+    """
+    Entry point of the workflow.
+    """
+
+    print("=" * 60)
+    print("Input Node")
+    print("=" * 60)
+
+    return state
+
+
+# ==================================================
+# Retriever Node (RAG)
+# ==================================================
+
+def retriever_node(state: SupplyChainState):
+    """
+    Retrieve relevant documents from the FAISS vector database.
+    """
+
+    print("=" * 60)
+    print("Retriever Node")
+    print("=" * 60)
+
+    query = state.get("user_query", "")
+
+    documents = retriever.retrieve(query)
+
+    state["retrieved_documents"] = [
+        doc.page_content
+        for doc in documents
+    ]
+
+    return state
+
+
+# ==================================================
+# Shipment Node
+# ==================================================
+
+def shipment_node(state: SupplyChainState):
+    """
+    Fetch shipment status.
+    """
+
+    print("=" * 60)
+    print("Shipment Node")
+    print("=" * 60)
+
+    shipment_id = state.get("shipment_id", "")
+
+    status = get_shipment_status.invoke(
+        {
+            "shipment_id": shipment_id
+        }
+    )
+
+    state["shipment_status"] = status
+
+    return state
+
+
+# ==================================================
+# Conditional Router
+# ==================================================
+
+def route_after_shipment(state: SupplyChainState):
+    """
+    Decide next workflow path.
+    """
+
+    status = state.get("shipment_status", "").lower()
+
+    if status == "delayed":
+        return ["weather", "supplier"]
+
+    return "risk"
+
+
+# ==================================================
+# Weather Node
+# ==================================================
+
+def weather_node(state: SupplyChainState):
+    """
+    Fetch weather information.
+    """
+
+    print("=" * 60)
+    print("Weather Node")
+    print("=" * 60)
+
+    weather = get_weather.invoke(
+        {
+            "city": "Chennai"
+        }
+    )
+
+    state["weather"] = weather
+
+    return state
+
+
+# ==================================================
+# Supplier Node
+# ==================================================
+
+def supplier_node(state: SupplyChainState):
+    """
+    Fetch supplier status.
+    """
+
+    print("=" * 60)
+    print("Supplier Node")
+    print("=" * 60)
+
+    supplier = get_supplier_status.invoke(
+        {
+            "supplier_id": "SUP001"
+        }
+    )
+
+    state["supplier_status"] = supplier
+
+    return state
+
+
+# ==================================================
+# Risk Node
+# ==================================================
+
+def risk_node(state: SupplyChainState):
+    """
+    Analyze shipment delay risk.
+    """
+
+    print("=" * 60)
+    print("Risk Node")
+    print("=" * 60)
+
+    shipment_status = state.get("shipment_status", "")
+    weather = state.get("weather", "")
+    supplier_status = state.get("supplier_status", "")
+
+    risk = calculate_delay_risk.invoke(
+        {
+            "shipment_status": shipment_status,
+            "weather": weather,
+            "supplier_status": supplier_status,
+        }
+    )
+
+    state["risk_level"] = risk
+
+    return state
+
+
+# ==================================================
+# LLM Node
+# ==================================================
+
+def llm_node(state: SupplyChainState):
+    """
+    Generate the final AI logistics report using
+    RAG + Tool Results.
+    """
+
+    print("=" * 60)
+    print("LLM Node")
+    print("=" * 60)
+
+    context = "\n\n".join(
+        state.get("retrieved_documents", [])
+    )
+
+    prompt = f"""
+You are an expert AI Supply Chain Intelligence Assistant.
+
+Use the retrieved knowledge base and live shipment information
+to answer professionally.
+
+==================================================
+KNOWLEDGE BASE
+==================================================
+
+{context}
+
+==================================================
+LIVE SHIPMENT INFORMATION
+==================================================
+
+Shipment ID:
+{state.get("shipment_id", "Unknown")}
+
+Shipment Status:
+{state.get("shipment_status", "Unknown")}
+
+Weather:
+{state.get("weather", "Not Available")}
+
+Supplier Status:
+{state.get("supplier_status", "Not Available")}
+
+Warehouse Status:
+{state.get("warehouse_status", "Not Available")}
+
+Risk Level:
+{state.get("risk_level", "Unknown")}
+
+==================================================
+USER QUESTION
+==================================================
+
+{state.get("user_query", "")}
+
+==================================================
+Instructions
+==================================================
+
+Answer using the Knowledge Base first.
+
+If the answer is not available in the Knowledge Base,
+use the live shipment information.
+
+Generate a professional report with the following sections:
+
+1. Executive Summary
+
+2. Shipment Status
+
+3. Weather Impact
+
+4. Supplier Analysis
+
+5. Risk Assessment
+
+6. Recommended Actions
+
+7. Estimated Business Impact
+
+Keep the report concise and professional.
+"""
+
+    response = llm.invoke(prompt)
+
+    final_response = parser.invoke(response)
+
+    state["final_response"] = final_response
+
+    state.setdefault("messages", [])
+
+    state["messages"].append(
+        f"User: {state.get('user_query', '')}"
+    )
+
+    state["messages"].append(
+        f"Assistant: {final_response}"
+    )
+
+    return state
+
+
+# ==================================================
+# Output Node
+# ==================================================
+
+def output_node(state: SupplyChainState):
+    """
+    Final workflow node.
+    """
+
+    print("=" * 60)
+    print("Output Node")
+    print("=" * 60)
+
+    print(state["final_response"])
+
+    return state

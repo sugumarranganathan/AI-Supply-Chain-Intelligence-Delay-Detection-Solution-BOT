@@ -1,0 +1,16 @@
+FREQUENTLY ASKED QUESTIONS
+
+Q: How do I track my shipment?
+A: Use the Shipment ID.
+
+Q: What causes shipment delays?
+A: Weather, supplier issues, warehouse congestion, and traffic.
+
+Q: Can I change the delivery address?
+A: Yes, before dispatch.
+
+Q: What if my shipment is delayed?
+A: The customer will receive a notification.
+
+Q: How can I contact support?
+A: Email support@supplychain.com

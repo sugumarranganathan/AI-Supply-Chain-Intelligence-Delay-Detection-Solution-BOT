@@ -1,0 +1,25 @@
+WEATHER DELAY POLICY
+
+Heavy Rain:
+Delay Risk: High
+
+Thunderstorm:
+Delay Risk: High
+
+Flood:
+Delay Risk: Critical
+
+Cyclone:
+Delay Risk: Very High
+
+Sunny:
+Delay Risk: Low
+
+Cloudy:
+Delay Risk: Low
+
+Wind Speed:
+Above 60 km/h may affect transportation.
+
+Recommendations:
+Use alternate routes during severe weather.
