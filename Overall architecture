@@ -1,0 +1,154 @@
+In your project, there are three main AI layers:
+
+LangGraph → Workflow orchestration
+LangChain → AI framework and tool integration
+RAG (Retrieval-Augmented Generation) → Knowledge retrieval
+
+Together they work with FAISS, Groq, and your custom tools.
+
+Overall architecture
+Customer
+    │
+    ▼
+LangGraph
+(Workflow Engine)
+    │
+    ▼
+LangChain
+(AI Framework)
+    │
+    ▼
+RAG
+(Knowledge Retrieval)
+    │
+    ▼
+FAISS
+(Vector Database)
+    │
+    ▼
+Groq LLM
+    │
+    ▼
+Final AI Report
+
+=====
+
+Components used in this project
+
+| Component                 | Purpose                                                          | Used in Your Project |
+| ------------------------- | ---------------------------------------------------------------- | -------------------- |
+| **LangGraph**             | Controls the workflow and node execution                         | ✅                    |
+| **LangChain**             | LLM integration, tools, prompts, memory, output parser           | ✅                    |
+| **RAG**                   | Retrieves relevant company knowledge before generating an answer | ✅                    |
+| **FAISS**                 | Stores and searches document embeddings                          | ✅                    |
+| **Sentence Transformers** | Creates embeddings for documents                                 | ✅                    |
+| **Groq (Llama)**          | Generates the final AI response                                  | ✅                    |
+| **Custom Tools**          | Customer lookup, shipment, supplier, weather, risk               | ✅                    |
+
+========
+
+What each one does
+1. LangGraph (Workflow Manager)
+
+It decides what happens first and what happens next.
+
+Input
+   │
+Customer Lookup
+   │
+Retriever
+   │
+Shipment Tool
+   │
+Supplier Tool
+   │
+Weather Tool
+   │
+Risk Tool
+   │
+LLM
+   │
+Output
+
+Purpose: Controls the execution flow.
+
+2. LangChain (AI Framework)
+
+It provides the AI building blocks.
+
+Prompt Template
+      │
+Tool Calling
+      │
+Memory
+      │
+Output Parser
+      │
+Groq LLM
+
+Purpose: Connects tools, the LLM, prompts, and memory.
+
+3. RAG (Knowledge Retrieval)
+
+It finds relevant information before the LLM answers.
+
+PDF / CSV Documents
+        │
+Text Splitter
+        │
+Embeddings
+        │
+FAISS
+        │
+Retriever
+        │
+Relevant Context
+
+Purpose: Supplies accurate company knowledge to the LLM.
+
+Complete project architecture
+Customer
+    │
+    ▼
+LangGraph
+(Workflow)
+    │
+    ▼
+LangChain
+(Tools + Prompt + Memory)
+    │
+    ▼
+RAG
+(Retrieve Knowledge)
+    │
+    ▼
+FAISS
+(Vector Search)
+    │
+    ▼
+Groq LLM
+(AI Analysis)
+    │
+    ▼
+Final Shipment Report
+Simple analogy
+
+Imagine running a logistics company:
+
+LangGraph = Operations Manager → decides the sequence of work.
+LangChain = Office Staff → communicates with systems, prepares prompts, manages memory, and calls tools.
+RAG = Company Knowledge Base → looks up policies and documents before answering.
+FAISS = Digital Filing Cabinet → quickly finds the right document.
+Groq LLM = AI Analyst → writes the final shipment report.
+The three core technologies to highlight
+
+For your project presentations and README, emphasize:
+
+🚀 LangGraph – Workflow Orchestration
+🔗 LangChain – AI Framework & Tool Integration
+📚 RAG (with FAISS) – Knowledge Retrieval System
+
+These three are the core AI architecture layers of your chatbot.
+
+====
+
