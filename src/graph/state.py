@@ -17,6 +17,16 @@ class SupplyChainState(TypedDict):
     user_query: str
 
     # ==========================================================
+    # Customer Information
+    # ==========================================================
+
+    customer_input: str
+    customer_name: str
+    phone: str
+    email: str
+    order_id: str
+
+    # ==========================================================
     # Shipment Information
     # ==========================================================
 
@@ -50,7 +60,7 @@ class SupplyChainState(TypedDict):
     messages: List[str]
 
     # ==========================================================
-    # Tool Execution Log (Optional)
+    # Tool Execution Log
     # ==========================================================
 
     tool_results: List[str]
