@@ -1,0 +1,18 @@
+| Feature                     | Custom Python                          | LangChain + LangGraph                                 | Which is Better?          |
+| --------------------------- | -------------------------------------- | ----------------------------------------------------- | ------------------------- |
+| API Token Usage             | ≈ Same                                 | ≈ Same                                                | 🤝 Equal                  |
+| Prompt Size                 | Depends on your code                   | Depends on your prompt template                       | 🤝 Equal                  |
+| Input Tokens                | Same if same prompt                    | Same if same prompt                                   | 🤝 Equal                  |
+| Output Tokens               | Same if same response                  | Same if same response                                 | 🤝 Equal                  |
+| RAG Context Tokens          | Same if same retrieved docs            | Same if same retrieved docs                           | 🤝 Equal                  |
+| Multiple LLM Calls          | Manual control                         | Easier to manage, but still your design               | 🤝 Equal                  |
+| Tool Calls                  | Local Python functions (no LLM tokens) | Local LangChain tools (no LLM tokens)                 | 🤝 Equal                  |
+| Workflow Execution          | Local Python (no LLM tokens)           | LangGraph nodes (no LLM tokens)                       | 🤝 Equal                  |
+| Memory Handling             | Your implementation                    | LangChain memory components                           | Depends on implementation |
+| Token Optimization Features | You implement them                     | Easier to implement via RAG, prompt templates, memory | ⭐ LangChain               |
+
+=========
+
+Overall comparison
+------------------
+
