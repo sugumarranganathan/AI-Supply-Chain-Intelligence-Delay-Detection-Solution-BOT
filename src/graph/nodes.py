@@ -77,15 +77,15 @@ def customer_lookup_node(state: SupplyChainState):
     )
 
     if shipment_id == "NOT_FOUND":
-    print("Customer not found.")
+        print("Customer not found.")
 
-    state["shipment_id"] = ""
-    state["final_response"] = (
-        "Customer details not found. "
-        "Please verify the phone number, email, order ID or customer name."
-    )
+        state["shipment_id"] = ""
+        state["final_response"] = (
+            "Customer details not found. "
+            "Please verify the phone number, email, order ID or customer name."
+        )
 
-    return state
+        return state
     
     else:
         print(f"Shipment Found: {shipment_id}")
