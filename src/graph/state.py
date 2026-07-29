@@ -32,6 +32,9 @@ class SupplyChainState(TypedDict):
 
     shipment_id: str
     shipment_status: str
+    supplier_id: str
+    warehouse_id: str
+    destination_city: str
 
     # ==========================================================
     # External Tool Results
