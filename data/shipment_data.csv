@@ -1,0 +1,6 @@
+ShipmentID,Status,Origin,Destination,Carrier,ExpectedDelivery
+SHP1001,Delayed,Chennai,Bangalore,DHL,2026-07-30
+SHP1002,In Transit,Chennai,Hyderabad,FedEx,2026-07-29
+SHP1003,Delivered,Delhi,Mumbai,BlueDart,2026-07-27
+SHP1004,Delayed,Coimbatore,Pune,DTDC,2026-07-31
+SHP1005,Out for Delivery,Chennai,Madurai,Ekart,2026-07-29
