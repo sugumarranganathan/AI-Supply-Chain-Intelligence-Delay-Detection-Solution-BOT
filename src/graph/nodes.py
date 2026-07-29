@@ -367,6 +367,10 @@ Keep the report concise and professional.
 # Output Node
 # ==================================================
 
+# ==================================================
+# Output Node
+# ==================================================
+
 def output_node(state: SupplyChainState):
     """
     Final workflow node.
@@ -376,6 +380,7 @@ def output_node(state: SupplyChainState):
     print("Output Node")
     print("=" * 60)
 
-    print(state["final_response"])
+    # Do not print the response here.
+    # Just return the final state.
 
     return state
