@@ -16,3 +16,18 @@
 Overall comparison
 ------------------
 
+| Criteria             | Custom Python       | LangChain + LangGraph |
+| -------------------- | ------------------- | --------------------- |
+| API Token Usage      | ⭐⭐⭐⭐⭐               | ⭐⭐⭐⭐⭐                 |
+| Development Speed    | ⭐⭐☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| Code Reusability     | ⭐⭐☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| Workflow Management  | ⭐⭐☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| Multi-Agent Support  | ⭐☆☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| State Management     | ⭐⭐☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| RAG Integration      | ⭐⭐☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| Maintainability      | ⭐⭐☆☆☆               | ⭐⭐⭐⭐⭐                 |
+| Learning Curve       | ⭐⭐⭐⭐⭐ (Python only) | ⭐⭐⭐☆☆                 |
+| Production Readiness | ⭐⭐⭐☆☆               | ⭐⭐⭐⭐⭐                 |
+
+===========
+
