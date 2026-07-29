@@ -1,23 +1,18 @@
-"""
-Shipment Tool
-"""
-
+import pandas as pd
 from langchain_core.tools import tool
+
+df = pd.read_csv("data/shipment_data.csv")
 
 
 @tool
 def get_shipment_status(shipment_id: str) -> str:
     """
-    Returns shipment status.
+    Return shipment status for a shipment ID.
     """
 
-    shipment_data = {
-        "SHIP001": "In Transit",
-        "SHIP002": "Delayed",
-        "SHIP003": "Delivered",
-    }
+    shipment = df[df["ShipmentID"] == shipment_id]
 
-    return shipment_data.get(
-        shipment_id.upper(),
-        "Shipment not found."
-    )
+    if shipment.empty:
+        return "Not Found"
+
+    return shipment.iloc[0]["Status"]
