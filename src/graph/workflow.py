@@ -10,6 +10,7 @@ from src.memory.memory import get_memory
 
 from src.graph.nodes import (
     input_node,
+    customer_lookup_node,
     retriever_node,
     shipment_node,
     weather_node,
@@ -37,6 +38,7 @@ def create_workflow():
     # ==========================================================
 
     workflow.add_node("input", input_node)
+    workflow.add_node("customer_lookup", customer_lookup_node)
     workflow.add_node("retriever", retriever_node)
     workflow.add_node("shipment", shipment_node)
     workflow.add_node("weather", weather_node)
@@ -56,11 +58,15 @@ def create_workflow():
     # ==========================================================
 
     # Input → Retriever
-    workflow.add_edge("input", "retriever")
+    #workflow.add_edge("input", "retriever")
 
     # Retriever → Shipment
+    #workflow.add_edge("retriever", "shipment")
+    
+    workflow.add_edge("input", "customer_lookup")
+    workflow.add_edge("customer_lookup", "retriever")
     workflow.add_edge("retriever", "shipment")
-
+    
     # Shipment → Weather / Supplier / Risk
     workflow.add_conditional_edges(
         "shipment",
