@@ -197,7 +197,6 @@ def weather_node(state: SupplyChainState):
 # ==================================================
 # Supplier Node
 # ==================================================
-
 # ==================================================
 # Supplier Node
 # ==================================================
@@ -222,10 +221,13 @@ def supplier_node(state: SupplyChainState):
     state["supplier_status"] = supplier
 
     print(f"Supplier ID     : {supplier_id}")
-    print(f"Supplier Status : {supplier}")
+
+    if supplier == "Supplier not found.":
+        print("Supplier not found.")
+    else:
+        print(f"Supplier Status : {supplier}")
 
     return state
-
 # ==================================================
 # Risk Node
 # ==================================================
