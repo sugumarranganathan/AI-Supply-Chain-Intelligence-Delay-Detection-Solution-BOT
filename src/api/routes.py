@@ -24,16 +24,31 @@ app = create_workflow()
 def chat(request: ChatRequest):
 
     state = {
+        # User Input
         "user_query": request.user_query,
         "shipment_id": request.shipment_id,
+        "customer_input": request.customer_input,
+
+        # Shipment Details
         "shipment_status": "",
+        "supplier_id": "",
+        "warehouse_id": "",
+        "destination_city": "",
+
+        # Tool Results
         "weather": "",
         "supplier_status": "",
         "warehouse_status": "",
         "risk_level": "",
+
+        # RAG
         "retrieved_documents": [],
+
+        # Conversation
         "messages": [],
         "tool_results": [],
+
+        # Final Response
         "final_response": "",
     }
 
@@ -43,5 +58,6 @@ def chat(request: ChatRequest):
     )
 
     return ChatResponse(
-        response=result["final_response"]
+        shipment_id=result.get("shipment_id", ""),
+        response=result.get("final_response", ""),
     )
