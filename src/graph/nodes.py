@@ -7,6 +7,7 @@ from langchain_core.output_parsers import StrOutputParser
 from src.graph.state import SupplyChainState
 
 from src.tools.shipment_tool import get_shipment_status
+from src.tools.customer_lookup_tool import find_shipment
 from src.tools.weather_tool import get_weather
 from src.tools.supplier_tool import get_supplier_status
 from src.tools.risk_tool import calculate_delay_risk
