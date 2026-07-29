@@ -44,6 +44,46 @@ def input_node(state: SupplyChainState):
 
 
 # ==================================================
+# Customer Lookup Node
+# ==================================================
+
+def customer_lookup_node(state: SupplyChainState):
+    """
+    Find Shipment ID using customer information.
+    """
+
+    print("=" * 60)
+    print("Customer Lookup Node")
+    print("=" * 60)
+
+    customer_input = state.get("customer_input", "").strip()
+
+    # If Shipment ID is already available, skip lookup
+    if state.get("shipment_id", "").strip():
+        return state
+
+    # If no customer information is provided
+    if not customer_input:
+        print("No customer information provided.")
+        return state
+
+    shipment_id = find_shipment.invoke(
+        {
+            "customer_input": customer_input
+        }
+    )
+
+    if shipment_id == "NOT_FOUND":
+        print("Customer not found.")
+        state["shipment_id"] = ""
+    else:
+        print(f"Shipment Found: {shipment_id}")
+        state["shipment_id"] = shipment_id
+
+    return state
+
+
+# ==================================================
 # Retriever Node (RAG)
 # ==================================================
 
