@@ -91,9 +91,7 @@ def analyze(search_method, search_value, question):
     # Normalize Search Value
     # ------------------------------------------
     
-    
-    
-    elif search_method == "Email":
+    if search_method == "Email":
         search_value = search_value.lower()
     
     elif search_method == "Customer Name":
@@ -107,9 +105,9 @@ def analyze(search_method, search_value, question):
         shipment_id = search_value
     else:
         customer_input = search_value
-        # ------------------------------------------
-        # Initial LangGraph State
-        # ------------------------------------------
+    # ------------------------------------------
+    # Initial LangGraph State
+    # ------------------------------------------
 
     state = {
 
