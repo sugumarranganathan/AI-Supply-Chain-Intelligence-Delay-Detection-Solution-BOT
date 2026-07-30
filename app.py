@@ -103,7 +103,12 @@ def analyze(search_method, search_value, question):
     
     if search_method == "Shipment ID":
         shipment_id = search_value
-    else:
+    elif search_method in [
+        "Mobile Number",
+        "Email",
+        "Order ID",
+        "Customer Name"
+    ]:
         customer_input = search_value
     # ------------------------------------------
     # Initial LangGraph State
