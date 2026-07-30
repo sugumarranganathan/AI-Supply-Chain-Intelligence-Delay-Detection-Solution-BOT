@@ -6,7 +6,7 @@ https://colab.research.google.com/drive/1efP92B8uC8yQoMGnydca1crzOVCKhY6S#scroll
 
 ---
 
-# 📌 Problem Statement
+# Problem Statement
 
 Supply chain and logistics companies often face challenges in tracking shipments, identifying delays, monitoring supplier performance, evaluating weather impact, and assessing business risks. Traditional shipment tracking systems typically display only shipment status and require manual analysis to understand the causes of delays and determine the next course of action.
 
@@ -14,7 +14,7 @@ This project addresses these challenges by integrating **Multi-Agent AI**, **Lan
 
 ---
 
-# 🎯 Project Objectives
+# Project Objectives
 
 - Track shipments using multiple search methods
 - Detect shipment delays automatically
@@ -28,7 +28,7 @@ This project addresses these challenges by integrating **Multi-Agent AI**, **Lan
 
 ---
 
-# 🌟 Key Features
+#  Key Features
 
 - Multi-Agent AI Workflow
 - LangGraph Orchestration
@@ -319,12 +319,6 @@ AI-Supply-Chain-Intelligence-Delay-Detection-Solution-BOT/
 
 ---
 
-# 📧 Contact
+# 📧 Prepared by
 
-**Sugumar R**
-
-📧 contact.sugumarai@gmail.com
-
----
-
-## ⭐ If you found this project useful, please consider giving it a Star on GitHub.
+**R. Sugumar, M.B.A.,**
