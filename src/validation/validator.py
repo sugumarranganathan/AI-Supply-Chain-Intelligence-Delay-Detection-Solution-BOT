@@ -39,14 +39,14 @@ def validate_input(search_method, search_value, question):
     question = question.strip()
 
     # ==========================================================
-    # Search Value
+    # Search Value Validation
     # ==========================================================
 
     if not search_value:
         return "Please enter a search value."
 
     # ==========================================================
-    # User Question
+    # User Question Validation
     # ==========================================================
 
     if not question:
@@ -61,7 +61,7 @@ def validate_input(search_method, search_value, question):
 
         pattern = r"^SHP\d{4}$"
 
-        if not re.fullmatch(pattern, search_value):
+        if not re.fullmatch(pattern, search_value, re.IGNORECASE):
             return (
                 "Invalid Shipment ID.\n\n"
                 "Example: SHP1001"
@@ -69,7 +69,7 @@ def validate_input(search_method, search_value, question):
 
     # ==========================================================
     # Mobile Number Validation
-    # Exactly 10 digits
+    # Exactly 10 Digits
     # ==========================================================
 
     elif search_method == "Mobile Number":
@@ -103,7 +103,7 @@ def validate_input(search_method, search_value, question):
 
         pattern = r"^ORD\d{4}$"
 
-        if not re.fullmatch(pattern, search_value):
+        if not re.fullmatch(pattern, search_value, re.IGNORECASE):
             return (
                 "Invalid Order ID.\n\n"
                 "Example: ORD1001"
