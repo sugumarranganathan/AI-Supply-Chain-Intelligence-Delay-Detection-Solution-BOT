@@ -13,6 +13,7 @@ Part 1
 import gradio as gr
 from src.graph.workflow import create_workflow
 from src.memory.session import DEFAULT_SESSION
+from src.validation.validator import validate_input
 
 # ==========================================================
 # CREATE WORKFLOW
@@ -58,10 +59,33 @@ h1,h2,h3{
 # ANALYZE SHIPMENT
 # ==========================================================
 
+
 def analyze(search_method, search_value, question):
 
     shipment_id = ""
     customer_input = ""
+
+    # ------------------------------------------
+    # INPUT VALIDATION
+    # ------------------------------------------
+
+    error = validate_input(
+        search_method,
+        search_value,
+        question
+    )
+
+    if error:
+        return (
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            f"# ❌ Validation Error\n\n{error}"
+        )
 
     # ------------------------------------------
     # Determine Search Type
@@ -71,7 +95,6 @@ def analyze(search_method, search_value, question):
         shipment_id = search_value
     else:
         customer_input = search_value
-
     # ------------------------------------------
     # Initial LangGraph State
     # ------------------------------------------
